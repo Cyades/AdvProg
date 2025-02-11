@@ -16,7 +16,7 @@ public class ProductRepository {
         return product;
     }
 
-    public Iterator<Product> findALl() {
+    public Iterator<Product> findAll() {
         return productData.iterator();
     }
 }
