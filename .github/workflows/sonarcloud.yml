@@ -28,6 +28,7 @@
 
 name: SonarCloud analysis
 
+
 on:
   push:
 
