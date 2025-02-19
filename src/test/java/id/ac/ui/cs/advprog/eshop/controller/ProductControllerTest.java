@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @AutoConfigureJsonTesters
 @WebMvcTest(ProductController.class)
-class ProductControllerTest {
+public class ProductControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
@@ -29,7 +29,7 @@ class ProductControllerTest {
     private JacksonTester<Product> jsonProduct;
 
     @Test
-    public void testProductListPage() throws Exception {
+    void testProductListPage() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(get("/product/list"))
                 .andReturn()
                 .getResponse();
