@@ -33,6 +33,8 @@ class ProductRepositoryTest {
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
         assertEquals(product.getProductId(), savedProduct.getProductId());
+        assertEquals(product.getProductName(), savedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
     }
 
     @Test
@@ -130,6 +132,7 @@ class ProductRepositoryTest {
         productRepository.update(product);
         Product savedProduct = productIterator.next();
         assertEquals(product.getProductName(), savedProduct.getProductName());
+        assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
     }
 
     @Test

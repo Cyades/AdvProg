@@ -28,7 +28,6 @@
 
 name: SonarCloud analysis
 
-
 on:
   push:
   pull_request:
