@@ -29,7 +29,7 @@ class ProductControllerTest {
     private JacksonTester<Product> jsonProduct;
 
     @Test
-    void testProductListPage() throws Exception {
+    public void testProductListPage() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(get("/product/list"))
                 .andReturn()
                 .getResponse();
