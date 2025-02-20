@@ -42,9 +42,68 @@ What do you think about the cleanliness of the code of the new functional test s
 ## 📘 Modul 2
 ### ✨ Reflection
 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+    - Removing the `public` modifier from test classes
+    ```java
+    // Before the fix
+    @WebMvcTest(MainController.class)
+    public class MainControllerTest {
 
+        @Autowired
+        private MockMvc mockMvc;
+    ```
+    ```java
+    // After the fix
+    @WebMvcTest(MainController.class)
+    class MainControllerTest {
+
+        @Autowired
+        private MockMvc mockMvc;
+    ```
+    Hal ini dilakukan agar dapat meningkatkan keterbacaan dan maintainability kode dengan visibilitas default (package-private), _mengikuti best practices_ dari JUnit untuk struktur testing yang lebih konsisten, serta mengurangi _code smell_ dengan menghindari modifier yang tidak diperlukan agar kode lebih ringkas dan sesuai konvensi modern.
+
+    - Removing Unnecessary Exception Declarations
+    ```java
+    // Before the fix
+    void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
+        // Exercise
+        driver.get(baseUrl);
+    ```
+    ```java
+    // After the fix
+    void pageTitle_isCorrect(ChromeDriver driver) {
+        // Exercise
+        driver.get(baseUrl);
+    ```
+    Dengan memperbaiki _issue_ diatas dapat meningkatkan keterbacaan, mengurangi kode yang tidak perlu, membuatnya lebih bersih dan mudah dipahami, dan tidak menyesatkan _developer_ lain yang membaca kode.
+
+    - Using `assertEquals` Instead of `assert`
+    ```java
+    // Before the fix
+        MockHttpServletResponse response = mockMvc.perform(
+                        get("/"))
+                .andReturn().getResponse();
+        assert (response.getStatus() == HttpStatus.SC_OK);
+    ```
+    ```java
+    // After the fix
+        MockHttpServletResponse response = mockMvc.perform(
+                        get("/"))
+                .andReturn().getResponse();
+        assertEquals(HttpStatus.SC_OK, response.getStatus());
+    ```
+    Dengan menggunakan `assertEquals` memberikan `assertion` yang lebih jelas dan deskriptif, mengikuti _best practice_ dalam penulisan `assertion` dalam _testing_, serta memastikan konsistensi dalam cara penulisan `assertion` di seluruh kode.
 
 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+
+    Menurut saya mengenai CI/CD workflows pada proyek saya ini sudah memenuhi implementasi dari definisi CI/CD itu tersendiri dengan contoh :
+    - _Continuous Integration_
+
+        Dari sisi _Continuous Integration_ saya sudah menggunakan beberapa _build script_ dan _tools_ yang berupa Gradle, Scorecard, dan SonarCloud yang dapat dilihat di file `ci.yml`, `scorecard.yml`, dan `sonarcloud.yml`. Menggunakan _build script_ dan _tools_ ini saya dapat memastikan bahwa setiap perubahan kode yang di-commit akan secara otomatis di-_build_ dan di-_testing_. Gradle digunakan untuk mengelola dependensi dan menjalankan _build_, Scorecard untuk mengevaluasi keamanan proyek, dan SonarCloud untuk analisis kualitas kode dan coverage. Dengan ini, saya dapat mendeteksi dan memperbaiki kesalahan lebih awal dalam pengembangan proyek ini.
+    
+    - _Continuous Deployment_
+
+        Untuk Continuous Deployment sendiri, saya sudah menggunakan PaaS Koyeb yang secara otomatis melakukan deployment setiap kali ada perubahan pada branch utama _(main)_ repositori. Proses deployment terjadi tanpa perlu intervensi manual, memastikan bahwa versi terbaru aplikasi selalu tersedia.
+
 
 
 ---
