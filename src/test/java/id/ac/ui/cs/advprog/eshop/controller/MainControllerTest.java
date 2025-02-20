@@ -10,7 +10,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @WebMvcTest(MainController.class)
-public class MainControllerTest {
+class MainControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -20,7 +20,7 @@ public class MainControllerTest {
     }
 
     @Test
-    public void canGetWelcomePage() throws Exception {
+    void canGetWelcomePage() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(
                         get("/"))
                 .andReturn().getResponse();
