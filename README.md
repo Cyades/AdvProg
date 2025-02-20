@@ -6,10 +6,10 @@
 ---
 
 ## 📌 Riwayat Modul
-| **Modul** | **Tautan** |
-|-----------|-----------|
-| Modul 1   | [Lihat Modul 1](#modul-1) |
-
+| **Modul** | **Tautan**                   |
+|-----------|------------------------------|
+| Modul 1   | [Lihat Modul 1](#📘-modul-1) |
+| Modul 2   | [Lihat Modul 2](#📘-modul-2) |
 ---
 
 ## 📘 Modul 1
@@ -37,3 +37,14 @@ What do you think about the cleanliness of the code of the new functional test s
         - Ketika pengujian ini dipisahkan juga membuat kode menjadi lebih sulit dipahami, developer lain yang membaca bisa saja kebingungan dengan pemisahan test unit tanpa alasan yang jelas ini, dan jadi harus beralih antara beberapa file untuk memahami pengujian yang sebenarnya terkait dengan fitur yang sama.
         - Dengan dua file terpisah untuk pengujian fitur yang sama juga menciptakan tantangan dalam pemeliharaan kode. Jika perlu dilakukan perubahan pada setup atau struktur pengujian, maka hal ini harus dilakukan modifikasi pada dua lokasi berbeda, hal ini tidak hanya membuang waktu akan tetapi juga meningkatkan resiko akan terjadinya inkonsistensi.
         - Hal yang sebaiknya dilakukan adalah menambahkan pengujian jumlah produk kedalam CreateProductFunctionalTest.java. Dengan ini, kita dapat mengurangi duplikasi kode dan membuat kode lebih mudah dipelihara.
+---
+
+## 📘 Modul 2
+### ✨ Reflection
+1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
+
+
+2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
+
+
+---
