@@ -41,7 +41,7 @@ class CreateProductFunctionalTest {
     }
 
     @Test
-    void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
+    void pageTitle_isCorrect(ChromeDriver driver) {
         // Exercise
         driver.get(baseUrl);
 
@@ -58,7 +58,7 @@ class CreateProductFunctionalTest {
     }
 
     @Test
-    void createPage_isCorrect(ChromeDriver driver) throws Exception {
+    void createPage_isCorrect(ChromeDriver driver) {
         // Exercise
         driver.get(baseUrl);
 
@@ -75,7 +75,7 @@ class CreateProductFunctionalTest {
     }
 
     @Test
-    void createProduct_isCorrect(ChromeDriver driver) throws Exception {
+    void createProduct_isCorrect(ChromeDriver driver) {
         // Exercise
         driver.get(baseUrl);
         WebElement productListButton = driver.findElement(By.className("btn-primary"));
