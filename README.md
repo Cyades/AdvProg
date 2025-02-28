@@ -10,6 +10,7 @@
 |-----------|------------------------------|
 | Modul 1   | [Lihat Modul 1](#📘-modul-1) |
 | Modul 2   | [Lihat Modul 2](#📘-modul-2) |
+| Modul 3   | [Lihat Modul 3](#📘-modul-3) |
 ---
 
 ## 📘 Modul 1
@@ -104,6 +105,44 @@ What do you think about the cleanliness of the code of the new functional test s
 
         Untuk Continuous Deployment sendiri, saya sudah menggunakan PaaS Koyeb yang secara otomatis melakukan deployment setiap kali ada perubahan pada branch utama _(main)_ repositori. Proses deployment terjadi tanpa perlu intervensi manual, memastikan bahwa versi terbaru aplikasi selalu tersedia.
 
+---
+
+## 📘 Modul 3
+### ✨ Reflection
+
+1. Explain what principles you apply to your project!
+
+    - _Single Responsibility Principle (SRP)_
+
+        Saya sudah menerapkan SRP dengan memisahkan antara `ProductController` dengan `CarController`, yang dimana masing-masing _controller_ sudah memiliki tanggung jawab tunggal untuk menangani operasi CRUD untuk _entity_ spesifik mereka seperti, `CarController` hanya mengelola operasi terkait _Car_ dan juga `ProductController` hanya mengelola operasi terkait _Product_.
+
+    - _Interface Segregation Principle (ISP)_
+
+        Kode saya telah menerapkan ISP yang dapat dilihat pada `CarService` dan `ProductService` yang memiliki _interface_ yang saling terkait secara logis untuk _entity_ masing: yang ditangani. Semua metode dalam _interface_ tersebut juga digunakan oleh _client_ implementasi `CarServiceImpl` dan `ProductServiceImpl`, dengan tanpa ada metode yang terpaksa diimplementasikan namun tidak relevan. Kedua _interface_ juga hanya fokus pada operasi yang diperlukan untuk _entitiy_ spesifik mereka.
+
+    - _Dependency Inversion Principle (DIP)_
+
+        Dengan mengganti `CarServiceImpl` menjadi `CarService` kode saya sudah sesuai dengan prinsip DIP, karena `CarController` tidak lagi bergantung pada implementasi konkret (`CarServiceImpl`), melainkan pada _abstraction_ (`CarService`), sehingga memungkinkan fleksibilitas dalam mengganti implementasi tanpa perlu mengubah kode pada `CarController`.
+
+
+2. Explain the advantages of applying SOLID principles to your project with examples.
+
+    - Kode lebih mudah di-_maintain_: Dengan memisahkan tanggung jawab ke dalam kelas-kelas yang berbeda, perubahan pada satu bagian kode tidak akan mempengaruhi bagian lain. Misalnya, jika ada perubahan pada `CarController`, perubahan tersebut tidak akan mempengaruhi `ProductController`. Hal ini membuat pemeliharaan kode menjadi lebih mudah dan risiko bug berkurang.
+
+    - Kode lebih mudah di-_testing_: Dengan memisahkan tanggung jawab dan menggunakan _interface_, kita dapat membuat mock atau stub untuk pengujian. Misalnya, `CarController` dapat diuji secara terpisah dengan menggunakan mock `CarService`. Hal ini membuat pengujian menjadi lebih mudah dan lebih fokus pada unit yang diuji.
+
+    - Kode lebih mudah dipahami: Dengan menerapkan prinsip SOLID, setiap kelas dan _interface_ memiliki tanggung jawab yang jelas dan spesifik. Misalnya, `CarService` hanya berisi metode yang terkait dengan operasi `Car`, dan `ProductService` hanya berisi metode yang terkait dengan operasi `Product`. Hal ini membuat kode lebih mudah dipahami oleh developer lain.
+
+
+3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+
+    - Kode lebih kompleks: Tanpa memisahkan tanggung jawab, kelas-kelas dalam kode akan memiliki banyak tanggung jawab yang berbeda. Misalnya, jika `CarController` juga menangani operasi `Product`, kelas tersebut akan menjadi sangat kompleks dan sulit dipahami.
+
+    - Kode lebih ketat/_strict_: Tanpa menggunakan _interface_ dan _abstraction_, modul tingkat tinggi akan bergantung pada modul tingkat rendah. Misalnya, jika `CarController` langsung bergantung pada `CarServiceImpl`, setiap perubahan pada implementasi akan memerlukan perubahan pada controller juga. Hal ini membuat kode menjadi lebih ketat dan sulit untuk dimodifikasi.
+
+    - Kode lebih sulit di-_maintain_: Dengan banyaknya tanggung jawab dalam satu kelas, setiap perubahan pada satu bagian kode dapat mempengaruhi bagian lain. Misalnya, perubahan pada operasi `Product` dalam `CarController` dapat menyebabkan bug pada operasi `Car`. Hal ini membuat pemeliharaan kode menjadi lebih sulit.
+
+    - Kode lebih sulit dibaca orang lain: Tanpa memisahkan tanggung jawab dan menggunakan _interface_ yang spesifik, kode akan menjadi lebih sulit dipahami oleh developer lain. Misalnya, jika `CarService` dan `ProductService` berbagi _interface_ umum dengan metode yang tidak terkait, developer lain akan kesulitan memahami tujuan dari setiap metode dalam _interface_ tersebut.
 
 
 ---
