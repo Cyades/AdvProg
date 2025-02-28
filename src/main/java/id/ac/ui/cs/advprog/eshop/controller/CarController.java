@@ -1,10 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Car;
-import id.ac.ui.cs.advprog.eshop.service.CarCreationService;
-import id.ac.ui.cs.advprog.eshop.service.CarRetrievalService;
-import id.ac.ui.cs.advprog.eshop.service.CarUpdateService;
-import id.ac.ui.cs.advprog.eshop.service.CarDeletionService;
+import id.ac.ui.cs.advprog.eshop.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,55 +12,45 @@ import java.util.List;
 @Controller
 @RequestMapping("/car")
 public class CarController {
-
     @Autowired
-    private CarCreationService carCreationService;
+    private CarService carService;
 
-    @Autowired
-    private CarRetrievalService carRetrievalService;
-
-    @Autowired
-    private CarUpdateService carUpdateService;
-
-    @Autowired
-    private CarDeletionService carDeletionService;
-
-    @GetMapping("/create")
+    @GetMapping("/createCar")
     public String createCarPage(Model model) {
         Car car = new Car();
         model.addAttribute("car", car);
         return "CreateCar";
     }
 
-    @PostMapping("/create")
-    public String createCarPost(@ModelAttribute Car car) {
-        carCreationService.create(car);
-        return "redirect:/car/list";
+    @PostMapping("/createCar")
+    public String createCarPost(@ModelAttribute Car car, Model model) {
+        carService.create(car);
+        return "redirect:listCar";
     }
 
-    @GetMapping("/list")
+    @GetMapping("/listCar")
     public String carListPage(Model model) {
-        List<Car> allCars = carRetrievalService.findAll();
+        List<Car> allCars = carService.findAll();
         model.addAttribute("cars", allCars);
         return "CarList";
     }
 
-    @GetMapping("/edit/{carId}")
-    public String editCarPage(@PathVariable("carId") String carId, Model model) {
-        Car car = carRetrievalService.findById(carId);
+    @GetMapping("/editCar/{carId}")
+    public String editCar(@PathVariable String carId, Model model) {
+        Car car = carService.findById(carId);
         model.addAttribute("car", car);
         return "EditCar";
     }
 
-    @PostMapping("/edit")
-    public String editCarPost(@ModelAttribute Car car) {
-        carUpdateService.update(car.getCarId(), car);
-        return "redirect:/car/list";
+    @PostMapping("/editCar")
+    public String editCarPost(@ModelAttribute Car car, Model model) {
+        carService.update(car.getCarId(), car);
+        return "redirect:listCar";
     }
 
-    @PostMapping("/delete/{carId}")
-    public String deleteCar(@PathVariable("carId") String carId) {
-        carDeletionService.deleteCarById(carId);
-        return "redirect:/car/list";
+    @PostMapping("/deleteCar")
+    public String deleteCar(@RequestParam("carId") String carId) {
+        carService.deleteCarById(carId);
+        return "redirect:listCar";
     }
 }
