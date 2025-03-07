@@ -11,6 +11,7 @@
 | Modul 1   | [Lihat Modul 1](#📘-modul-1) |
 | Modul 2   | [Lihat Modul 2](#📘-modul-2) |
 | Modul 3   | [Lihat Modul 3](#📘-modul-3) |
+| Modul 4   | [Lihat Modul 4](#📘-modul-4) |
 ---
 
 ## 📘 Modul 1
@@ -145,4 +146,31 @@ What do you think about the cleanliness of the code of the new functional test s
     - Kode lebih sulit dibaca orang lain: Tanpa memisahkan tanggung jawab dan menggunakan _interface_ yang spesifik, kode akan menjadi lebih sulit dipahami oleh developer lain. Misalnya, jika `CarService` dan `ProductService` berbagi _interface_ umum dengan metode yang tidak terkait, developer lain akan kesulitan memahami tujuan dari setiap metode dalam _interface_ tersebut.
 
 
+---
+
+## 📘 Modul 4
+### ✨ Reflection
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this TDD flow is useful enough for you or not. If not, explain things that you need to do next time you make more tests.
+
+    Menurut saya TDD flow sangat bermanfaat dalam proyek ini karena:
+    - Meningkatkan Struktur Code : TDD membantu saya merancang komponen dengan lebih struktur dan masing masing memiliki tanggung jawab yang jelas.
+    - Cakupan Test yang Baik : Unit test menyeluruh memastikan fungsionalitas dasar tercakup.
+    - Desain Modular : Pendekatan ini mendorong interface dan implementasi yang lebih fokus
+    - Pengembangan Lebih Jelas: Dengan membuat test terlebih dahulu, implementasi menjadi lebih terarah
+
+    Meskipun sangat bermanfaat, tetapi menurut saya ada beberapa aspek yang perlu ditingkatkan lagi untuk test selanjutnya :
+    - Perlu lebih banyak test untuk edge cases
+    - Menambahkan integration test antar komponen
+    - Mengembangkan test untuk aspek keamanan
+
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+
+    Menurut saya test yang sudah dibuat sudah mengimplementasikan prinsip F.I.R.S.T:
+    - Fast: Test dibuat dengan efisien untuk hasil cepat
+    - Isolated: Test berdiri sendiri tidak bergantung pada test lain
+    - Repeatable: Test memberikan hasil yang konsisten setiap dijalankan
+    - Self-validating: Test memberikan hasil pass/fail melalui asersi tanpa intervensi manual
+    - Timely: Test dibuat sebelum implementasi kode (sesuai prinsip TDD)
 ---
