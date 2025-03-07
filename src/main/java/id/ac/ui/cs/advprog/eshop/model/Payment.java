@@ -39,7 +39,7 @@ public class Payment {
     }
 
 
-    void setStatus(String status) {
+    public void setStatus(String status) {
         if (PaymentStatus.contains(status)) {
             this.status = status;
         }
