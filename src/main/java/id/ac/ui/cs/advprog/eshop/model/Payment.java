@@ -38,6 +38,7 @@ public class Payment {
         }
     }
 
+
     void setStatus(String status) {
         if (PaymentStatus.contains(status)) {
             this.status = status;
@@ -49,7 +50,7 @@ public class Payment {
 
     public void setPaymentData(Map<String, String> paymentData) {
         if (method.equals(PaymentMethod.BANK.getValue())) {
-            if (paymentData.get("bankName").isBlank() || paymentData.get("referenceCode").isBlank()) {
+            if (paymentData.get("bankName").trim().isEmpty() || paymentData.get("referenceCode").trim().isEmpty()) {
                 throw new IllegalArgumentException("Bank name or reference code is blank");
             }
         } else if (method.equals(PaymentMethod.VOUCHER.getValue())) {
