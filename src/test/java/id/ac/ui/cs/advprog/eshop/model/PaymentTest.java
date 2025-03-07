@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -115,5 +116,18 @@ public class PaymentTest {
     void testCreatePaymentInvalidStatus() {
         Payment payment = new Payment(order.getId(), order, "CANCELLED", paymentData);
         assertThrows(IllegalArgumentException.class, () -> payment.setStatus("MAWMAW"));
+    }
+
+    @Test
+    void testPaymentMethodContains() {
+        // Test for existing payment methods
+        assertTrue(PaymentMethod.contains("BANK"));
+        assertTrue(PaymentMethod.contains("VOUCHER"));
+        
+        // Test for non-existing payment method
+        assertFalse(PaymentMethod.contains("CASH"));
+        assertFalse(PaymentMethod.contains("CREDIT_CARD"));
+        assertFalse(PaymentMethod.contains(null));
+        assertFalse(PaymentMethod.contains(""));
     }
 }
